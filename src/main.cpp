@@ -1,7 +1,7 @@
 #include <cstring>
 #include "Util.hpp"
 
-using namespace bt;
+using namespace avlt;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
   notation_t prefix = readFile(file_prefix_in);

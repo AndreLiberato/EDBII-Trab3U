@@ -6,8 +6,7 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
 
 - ``src`` - Contém todos os arquivos ``.cpp``;
 - ``include`` - Contém todos os arquivos ``.hpp``;
-- ``data/in`` - Contém os arquivos com as expressões posfixas e prefixas (opcional) de entrada;
-- ``data/out`` - Contém os arquivos com as expressões prefixas, infixas e com os resultados aritméticos das expressões;
+- ``data/in`` - Contém os arquivos com as chaves a serem inseridas, removidas ou buscadas em ordem;
 - ``build`` - Contém o ``Makefile``, o binário ``calc`` e todos os outros arquivos que o ``cmake`` cria.
 
 # Como compilar o projeto
@@ -16,22 +15,44 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
   cmake -B build
   cmake --build build
   ```
- 
+
 # Como executar o projeto
  Para uma execução padrão, execute:
   ```
-  ./build/calc
+  ./build/avltree
   ```
- Para uma execução verbosa, ou seja, que mostra todos os processos incluindo o diagrama da árvore criada, execute:
- ``
-  ./build/calc --verbose
-  ``
-  ou
+
+ O programa irá te guiar por um prompt. Exemplo:
+
   ```
-  ./build/calc -v
+  O que desejas fazer? [I: inserir, R: remover, B: buscar]
+  I
+  4
+  "Printa a árvore com um nó com a chave 4."
+  B
+  4
+  Verdadeiro. O nó tem altura 1.
+  R
+  4
+  "Printa árvore vazia."
+  B
+  4
+  Falso. Não existe nó com essa chave.
+  R
+  5
+  O nó 5 não existe! Não é possível remover.
   ```
+
+  Ou execute informando o arquivo.
+
+  ```
+  ./build/avltree data/in/data.in
+  ```
+  
+  Por exemplo.
+
 ## Especificação
-  O projeto é complicado usando as seguintes flags de compilação
+  O projeto é compilado usando as seguintes "flags" de compilação
   -g
   -Wall
   -Werror
@@ -43,4 +64,19 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
   -lm
 
 ## Observações
- As expressões contidas em posfix.in tem os seus números e suas operações separadas por um espaço, possibilitando, assim, a escrita de números com mais de um dígito.
+ As expressões contidas em data.in tem os seus números e suas operações separadas por um espaço, possibilitando, assim, a escrita de números com mais de um dígito.
+
+ Exemplo de arquivo data.in
+
+ ```
+  I
+  4
+  B
+  4
+  R
+  4
+  B
+  4
+  R
+  5
+ ```

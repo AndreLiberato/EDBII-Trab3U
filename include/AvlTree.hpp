@@ -5,7 +5,7 @@
 #include <string>
 #include "Util.hpp"
 
-namespace bt {
+namespace avlt {
   class AvlTree {
     private:
       struct Node{

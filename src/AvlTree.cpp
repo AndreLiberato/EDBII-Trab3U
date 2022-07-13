@@ -1,6 +1,6 @@
 #include "AvlTree.hpp"
 
-using namespace bt;
+using namespace avlt;
 
 AvlTree::~AvlTree() {
   remove_node(root);
