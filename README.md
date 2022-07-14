@@ -31,13 +31,15 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
   "Printa a árvore com um nó com a chave 4."
   B
   4
-  Verdadeiro. O nó tem altura 1.
+  Verdadeiro. Existe nó com essa chave.
+  "Printa árvore com nó destacado."
   R
   4
   "Printa árvore vazia."
   B
   4
   Falso. Não existe nó com essa chave.
+  "Printa árvore"
   R
   5
   O nó 5 não existe! Não é possível remover.
@@ -69,14 +71,6 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
  Exemplo de arquivo data.in
 
  ```
-  I
-  4
-  B
-  4
-  R
-  4
-  B
-  4
-  R
-  5
+  I4 B4 R4 B4 R5 I7 I7
+  B3 I456 B123 R314 B71 R5 I7
  ```

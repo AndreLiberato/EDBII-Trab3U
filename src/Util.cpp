@@ -4,11 +4,9 @@ using notation_t = std::vector<std::string>;
 
 bool is_operator(const char str) {
   return (
-      ( str == '+' ||
-        str == '-' ||
-        str == '*' ||
-        str == '/' ||
-        str == '^' ) ? true : false);
+      ( str == 'B' ||
+        str == 'I' ||
+        str == 'R') ? true : false);
 }
 
 std::fstream openFile(std::string fileName){
