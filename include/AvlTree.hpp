@@ -29,6 +29,13 @@ namespace avlt {
       ~AvlTree();
 
       /*
+       * @brief
+       * @param
+       */
+      void right_rotation(Node *upNode, Node *downNode);
+
+
+      /*
        * @brief Recursively removes the node from memory with all its sub-nodes.
        * @param A pointer to a node.
        */

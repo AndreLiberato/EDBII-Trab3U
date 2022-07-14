@@ -2,35 +2,45 @@
 
 using namespace avlt;
 
-AvlTree::~AvlTree() {
-  remove_node(root);
+AvlTree::~AvlTree() { remove_node(root); }
+
+void AvlTree::right_rotation(Node *upNode, Node *downNode) {
+  if (upNode == nullptr or downNode == nullptr) {
+    return;
+  } else {
+    Node *aux = new Node(0);
+    aux = upNode;
+    upNode = downNode;
+    aux->left = upNode;
+    downNode = upNode->right;
+    upNode->right = aux;
+  }
 }
 
-void AvlTree::remove_node(Node* node) {
-  if(node->left != nullptr)
+void AvlTree::remove_node(Node *node) {
+  if (node->left != nullptr)
     remove_node(node->left);
 
-  if(node->right != nullptr)
+  if (node->right != nullptr)
     remove_node(node->right);
 
   delete node;
 }
 
-AvlTree::Node* AvlTree::getRoot() {
-  return root;
-}
+AvlTree::Node *AvlTree::getRoot() { return root; }
 
-int AvlTree::visit(Node* node) {
-  if(node != nullptr) 
+int AvlTree::visit(Node *node) {
+  if (node != nullptr)
     return node->key;
   else
     return -1; // TODO: ajustar mensagem de erro!
 }
 
-// TODO: transformar isso em uma função que lê uma string de comando para criação da árvore.
-std::string AvlTree::from_command(Node* node, std::string command) {
-  if( !command.empty() ) {
-    if( is_operator( command.front() )) {
+// TODO: transformar isso em uma função que lê uma string de comando para
+// criação da árvore.
+std::string AvlTree::from_command(Node *node, std::string command) {
+  if (!command.empty()) {
+    if (is_operator(command.front())) {
 
       node->left = new Node(0);
       node->right = new Node(0);
@@ -56,16 +66,17 @@ std::string AvlTree::from_command(Node* node, std::string command) {
   return "";
 }
 
-void AvlTree::print(Node* node, std::string prefix, bool isLeft) {
-  if(node != nullptr) {
+void AvlTree::print(Node *node, std::string prefix, bool isLeft) {
+  if (node != nullptr) {
     std::cout << "\033[0;33m" << prefix;
     std::cout << "\033[0m";
 
-    std::cout << "\033[1;33m" << (isLeft ? "├──" : "└──" );
+    std::cout << "\033[1;33m" << (isLeft ? "├──" : "└──");
     std::cout << "\033[0m";
 
     // Print the value of the node
-    std::cout << "\033[1;32m" << " " << node->key << std::endl;
+    std::cout << "\033[1;32m"
+              << " " << node->key << std::endl;
     std::cout << "\033[0m";
 
     // Enter the next tree level - left and right branch
