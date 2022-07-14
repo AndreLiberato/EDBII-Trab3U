@@ -16,7 +16,7 @@ namespace avlt {
 
         //! Default Ctro.
         Node(const int k, int b = 0, Node *l = nullptr, Node *r = nullptr)
-          : left{l}, right{r}, key{k}, balance{b} { /*empty*/}
+          : key{k}, balance{b}, left{l}, right{r} { /*empty*/}
       };
 
       Node *root; //!< The root node.
@@ -45,7 +45,7 @@ namespace avlt {
        * @param node: a arbitrary node.
        * @return The key in the node.
        */
-      std::string visit(Node *node);
+      int visit(Node *node);
 
       /*
        * @brief 

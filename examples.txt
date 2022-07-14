@@ -1,8 +1,0 @@
-Posfixa     Prefixa     Infixa
-
-2 3 +       + 2 3       2 + 3
-
-A B C * +   + A * B C  A + B * C
-
-	
-
