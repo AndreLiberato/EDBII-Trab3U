@@ -41,4 +41,6 @@ int calculator(std::string expression);
 
 void check_dir(const std::filesystem::path path);
 
+std::vector<std::string> split(std::string str);
+
 #endif
