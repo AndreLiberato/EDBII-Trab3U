@@ -67,7 +67,7 @@ int AvlTree::visit(Node *node) {
     return -1; // TODO: ajustar mensagem de erro!
 }
 
-// TODO: transformar isso em uma função que lê uma string de comando para
+// TODO: transformar isso em uma função que lê uma string de commando para
 // criação da árvore.
 std::string AvlTree::from_command(Node *node, std::string command) {
   if (!command.empty()) {
