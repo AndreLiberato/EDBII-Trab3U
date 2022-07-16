@@ -4,17 +4,24 @@ using namespace avlt;
 
 AvlTree::~AvlTree() { remove_node(root); }
 
-void AvlTree::right_rotation(Node *upNode, Node *downNode) {
-  if (upNode == nullptr or downNode == nullptr) {
-    return;
-  } else {
-    Node *aux = new Node(0);
-    aux = upNode;
-    upNode = downNode;
-    aux->left = upNode;
-    downNode = upNode->right;
-    upNode->right = aux;
-  }
+AvlTree::Node* AvlTree::right_rotation(Node* node) {
+    if (node != nullptr and node->left != nullptr) {
+      Node* tempNode = node->left;
+      node->left = tempNode->right;
+      tempNode->right = node;
+      return tempNode;
+    }
+  return nullptr;
+}
+
+AvlTree::Node* AvlTree::left_rotation(Node* node) {
+    if (node != nullptr and node->right != nullptr) {
+      Node* tempNode = node->right;
+      node->right = tempNode->left;
+      tempNode->left = node;
+      return tempNode;
+    }
+  return nullptr;
 }
 
 void AvlTree::remove_node(Node *node) {

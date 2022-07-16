@@ -32,7 +32,9 @@ namespace avlt {
        * @brief
        * @param
        */
-      void right_rotation(Node *upNode, Node *downNode);
+      Node* right_rotation(Node* node);
+
+      Node* left_rotation(Node* node);
 
 
       /*
