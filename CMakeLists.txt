@@ -33,6 +33,7 @@ target_sources(
     src/main.cpp
     src/AvlTree.cpp
     src/Util.cpp
+    src/Command.cpp
 )
 
 # The end
