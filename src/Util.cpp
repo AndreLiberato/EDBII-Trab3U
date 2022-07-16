@@ -119,3 +119,14 @@ void check_dir(const std::filesystem::path path) {
     }
   }
 }
+
+std::vector<std::string> split(std::string str) {
+    std::vector<std::string> commands;
+    std::stringstream ss(str);
+    std::string word;
+    
+    while (ss >> word) {
+      commands.push_back(word);
+    }
+    return commands;
+}
