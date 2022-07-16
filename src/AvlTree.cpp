@@ -4,24 +4,48 @@ using namespace avlt;
 
 AvlTree::~AvlTree() { remove_node(root); }
 
-AvlTree::Node* AvlTree::right_rotation(Node* node) {
-    if (node != nullptr and node->left != nullptr) {
-      Node* tempNode = node->left;
-      node->left = tempNode->right;
-      tempNode->right = node;
+AvlTree::Node* AvlTree::right_rotation(Node* root) {
+    if (root != nullptr and root->left != nullptr) {
+      Node* tempNode = root->left;
+      root->left = tempNode->right;
+      tempNode->right = root;
       return tempNode;
     }
   return nullptr;
 }
 
-AvlTree::Node* AvlTree::left_rotation(Node* node) {
-    if (node != nullptr and node->right != nullptr) {
-      Node* tempNode = node->right;
-      node->right = tempNode->left;
-      tempNode->left = node;
+AvlTree::Node* AvlTree::left_rotation(Node* root) {
+    if (root != nullptr and root->right != nullptr) {
+      Node* tempNode = root->right;
+      root->right = tempNode->left;
+      tempNode->left = root;
       return tempNode;
     }
   return nullptr;
+}
+
+AvlTree::Node* AvlTree::double_left_rotation(Node* root) {
+  // Right rotation on the right subtree.
+  Node* newRightRoot = right_rotation(root->right);
+
+  // Assign the rotated tree to be the new right subtree.
+  root->right = newRightRoot;
+
+  // Left rotation on the root.
+  Node* newRoot = left_rotation(root);
+  return newRoot;
+}
+
+AvlTree::Node* AvlTree::double_right_rotation(Node* root) {
+  // Left rotation on the left subtree.
+  Node* newLeftRoot = left_rotation(root->left);
+
+  // Assign the rotated tree to be the new left subtree.
+  root->left = newLeftRoot;
+
+  // Right rotation on the root.
+  Node* newRoot = right_rotation(root);
+  return newRoot;
 }
 
 void AvlTree::remove_node(Node *node) {
