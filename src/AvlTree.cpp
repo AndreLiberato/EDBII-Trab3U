@@ -14,17 +14,15 @@ AvlTree::Node* AvlTree::right_rotation(Node* root) {
     << endl;
 
   if (root != nullptr and root->left != nullptr) {
-    Node* tempNode = root->left;
-    root->left = tempNode->right;
-    tempNode->right = root;
-    return tempNode;
+    Node* tempNode = new Node(0);
+    *tempNode = *root;
+    *root = *root->left;
+    delete tempNode->left;
+    tempNode->left = nullptr;
+    root->right = tempNode;
+    return root;
   }
   return nullptr;
-
-    //Node* tempNode = root;
-    //root = root->left;
-    //root->right = tempNode;
-    //return root;
 }
 
 AvlTree::Node* AvlTree::left_rotation(Node* root) {
@@ -88,7 +86,10 @@ void AvlTree::insert(int key, Node* node, bool* h) {
             node->balance = -1;
             break;
           case -1:
-            node = left_rebalance(node, h);
+            cout << "Teste antes" << endl;
+            print(node);
+            left_rebalance(node, h);
+            cout << "Teste depois" << endl;
             print(node);
             break;
         }
@@ -122,7 +123,7 @@ void AvlTree::insert(int key, Node* node, bool* h) {
   print(node);
 }
 
-AvlTree::Node* AvlTree::left_rebalance(Node* node, bool* h) {
+void AvlTree::left_rebalance(Node* node, bool* h) {
   cout << "In left_rebalance(). " 
     << " node: " << node 
     << " node->key: " << node->key
@@ -132,8 +133,8 @@ AvlTree::Node* AvlTree::left_rebalance(Node* node, bool* h) {
 
   if ((node->left)->balance == -1) {
     node->balance = 0;
-    return right_rotation(node);
-    //print(node);
+    right_rotation(node);
+    //print(right_rotation(node));
   }
   else {
     // Change the tree structure by a DRR.
@@ -151,7 +152,6 @@ AvlTree::Node* AvlTree::left_rebalance(Node* node, bool* h) {
   }
   node->balance = 0;
   *h = false;
-  return nullptr;
 }
 
 void AvlTree::remove_node(Node* node) {
