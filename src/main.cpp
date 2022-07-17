@@ -1,13 +1,39 @@
 #include "Util.hpp"
 #include "Command.hpp"
+#include "AvlTree.hpp"
 
 using namespace avlt;
+using std::cout;
+using std::endl;
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
   std::string entry;
   std::string command;
   std::string value;
   Command command_sys;
+
+  AvlTree* avlTree = new AvlTree();
+
+  bool h = true;
+
+  avlTree->insert(5, avlTree->getRoot(), &h);
+
+  h = true;
+  avlTree->insert(-1, avlTree->getRoot(), &h);
+
+  h = true;
+  avlTree->insert(2, avlTree->getRoot(), &h);
+
+  h = true;
+  avlTree->insert(-2, avlTree->getRoot(), &h);
+
+  h = true;
+  avlTree->insert(7, avlTree->getRoot(), &h);
+
+  h = true;
+  avlTree->insert(-99999, avlTree->getRoot(), &h);
+
+  delete avlTree;
 
   while (true)
   {
@@ -47,12 +73,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 
     entry.clear();
   }
-  
-  AvlTree* avlTree = new AvlTree();
-  avlTree->insert(5, avlTree->getRoot(), true);
-  //std::cout << (((avlTree->getRoot())->right)->key) << std::endl;
-  avlTree->print(avlTree->getRoot());
-  delete avlTree;
-  
+
   return 0;
 }

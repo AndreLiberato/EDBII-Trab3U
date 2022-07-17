@@ -1,10 +1,18 @@
 #include "AvlTree.hpp"
 
 using namespace avlt;
+using std::cout;
+using std::endl;
 
 AvlTree::~AvlTree() { remove_node(root); }
 
 AvlTree::Node* AvlTree::right_rotation(Node* root) {
+  cout << "In right_rotation(). "
+    << " node: " << root 
+    << " node->key: " << root->key 
+    << " node->bal: " << root->balance
+    << endl;
+
   if (root != nullptr and root->left != nullptr) {
     Node* tempNode = root->left;
     root->left = tempNode->right;
@@ -12,6 +20,11 @@ AvlTree::Node* AvlTree::right_rotation(Node* root) {
     return tempNode;
   }
   return nullptr;
+
+    //Node* tempNode = root;
+    //root = root->left;
+    //root->right = tempNode;
+    //return root;
 }
 
 AvlTree::Node* AvlTree::left_rotation(Node* root) {
@@ -48,58 +61,79 @@ AvlTree::Node* AvlTree::double_left_rotation(Node* root) {
   return newRoot;
 }
 
-void AvlTree::insert(int key, Node* node, bool h) {
-  //std::cout << (node == nullptr)<< std::endl;
-  if (node == nullptr) {
-    node = new Node(key);
-    h = true;
-  }
+void AvlTree::insert(int key, Node* node, bool* h) {
+  cout << "In insert(). "
+    << "key: " << key 
+    << " node: " << node 
+    << " node->key: " << node->key 
+    << " node->bal: " << node->balance
+    << " h: " << h 
+    << endl;
 
-  else if (key == node->key)
-    return;
-
-  else if (key < node->key) {
-    insert(key, node->left, h);
-    if (h) {
-      switch (node->balance) {
-        case 1:
-          node->balance = 0;
-          h = false;
-          break;
-        case 0:
-          node->balance = -1;
-          break;
-        case -1:
-          right_rebalance(node, &h);
-          break;
+  if (key != node->key) {
+    if (key < node->key) {
+      cout << "key < node->key" << endl;
+      if (node->left == nullptr) {
+        node->left = new Node(key);
+        *h = true;
+      }
+      insert(key, node->left, h);
+      if (*h) {
+        switch (node->balance) {
+          case 1:
+            node->balance = 0;
+            *h = false;
+            break;
+          case 0:
+            node->balance = -1;
+            break;
+          case -1:
+            node = left_rebalance(node, h);
+            print(node);
+            break;
+        }
+      }
+    }
+    else {
+      cout << "key > node->key" << endl;
+      if (node->right == nullptr) {
+        node->right = new Node(key);
+        *h = true;
+      }
+      insert(key, node->right, h);
+      cout << "h: " << *h << endl;
+      if (*h) {
+        switch (node->balance) {
+          case -1:
+            node->balance = 0;
+            *h = false;
+            break;
+          case 0:
+            node->balance = 1;
+            break;
+          case 1:
+            cout << "HELLO" << endl;
+            break;
+            //left_rebalance(node, h);
+        }
       }
     }
   }
-
-  else {
-    insert(key, node->right, h);
-    //node->right = new Node(key);
-    if (h) {
-      switch (node->balance) {
-        case -1:
-          node->balance = 0;
-          h = false;
-          break;
-        case 0:
-          node->balance = 1;
-          break;
-        case 1:
-          std::cout << "TODO" << std::endl;
-          //left_rebalance(node, h);
-      }
-    }
-  }
+  print(node);
 }
 
-void AvlTree::right_rebalance(Node* node, bool* h) {
+AvlTree::Node* AvlTree::left_rebalance(Node* node, bool* h) {
+  cout << "In left_rebalance(). " 
+    << " node: " << node 
+    << " node->key: " << node->key
+    << " bal: " << node->balance
+    << " h: " << h 
+    << endl;
+
   if ((node->left)->balance == -1) {
     node->balance = 0;
-    node = right_rotation(node);
+    return right_rotation(node);
+    //print(node);
   }
   else {
     // Change the tree structure by a DRR.
@@ -117,6 +151,7 @@ void AvlTree::right_rebalance(Node* node, bool* h) {
   }
   node->balance = 0;
   *h = false;
+  return nullptr;
 }
 
 void AvlTree::remove_node(Node* node) {
@@ -178,7 +213,7 @@ void AvlTree::print(Node* node, std::string prefix, bool isLeft) {
 
     // Print the value of the node
     std::cout << "\033[1;32m"
-      << " " << node->key << std::endl;
+      << " " << node->key << "|" << node->balance << std::endl;
     std::cout << "\033[0m";
 
     // Enter the next tree level - left and right branch

@@ -40,9 +40,10 @@ namespace avlt {
 
       Node* double_right_rotation(Node* root);
 
-      void insert(int key, Node* node, bool h);
+      void insert(int key, Node* node, bool* h);
 
-      void right_rebalance(Node* node, bool *h);
+      //void right_rebalance(Node* node, bool* h);
+      Node* left_rebalance(Node* node, bool* h);
 
       //void left_rebalance(Node* node, bool* h);
 
