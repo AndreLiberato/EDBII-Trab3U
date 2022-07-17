@@ -42,11 +42,9 @@ namespace avlt {
 
       void insert(int key, Node* node, bool* h);
 
-      //void right_rebalance(Node* node, bool* h);
+      void right_rebalance(Node* node, bool* h);
+      
       void left_rebalance(Node* node, bool* h);
-
-      //void left_rebalance(Node* node, bool* h);
-
 
       /*
        * @brief Recursively removes the node from memory with all its sub-nodes.

@@ -16,7 +16,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 
   bool h = true;
 
-  avlTree->insert(5, avlTree->getRoot(), &h);
+  /* avlTree->insert(5, avlTree->getRoot(), &h);
 
   h = true;
   avlTree->insert(-1, avlTree->getRoot(), &h);
@@ -32,8 +32,8 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 
   h = true;
   avlTree->insert(-99999, avlTree->getRoot(), &h);
-
-  delete avlTree;
+  
+  avlTree->print(avlTree->getRoot()); */
 
   while (true)
   {
@@ -45,8 +45,10 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
 
     switch (command_sys.get_command(command)) {
     case command_sys.insert:
-      //
       std::cout << "insert" << std::endl;
+      h = true;
+      avlTree->insert(stoi(value), avlTree->getRoot(), &h);
+      avlTree->print(avlTree->getRoot());
       break;
     case command_sys.remove:
       //
@@ -72,7 +74,11 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
     }
 
     entry.clear();
+    command.clear();
+    value.clear();
   }
+
+  delete avlTree;
 
   return 0;
 }
