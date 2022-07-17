@@ -18,7 +18,7 @@ AvlTree::Node* AvlTree::right_rotation(Node* root) {
     *tempNode = *root;
     *root = *root->left;
     delete tempNode->left;
-    tempNode->left = nullptr;
+    tempNode->left = root->right;
     root->right = tempNode;
     return root;
   }
@@ -26,12 +26,18 @@ AvlTree::Node* AvlTree::right_rotation(Node* root) {
 }
 
 AvlTree::Node* AvlTree::left_rotation(Node* root) {
+    cout << "In left_rotation(). "
+      << " node: " << root 
+      << " node->key: " << root->key 
+      << " node->bal: " << root->balance
+      << endl;
+
   if (root != nullptr and root->right != nullptr) {
     Node* tempNode = new Node(0);
     *tempNode = *root;
     *root = *root->right;
     delete tempNode->right;
-    tempNode->right = nullptr;
+    tempNode->right = root->left;
     root->left = tempNode;
     return root;
   }
@@ -39,6 +45,12 @@ AvlTree::Node* AvlTree::left_rotation(Node* root) {
 }
 
 AvlTree::Node* AvlTree::double_right_rotation(Node* root) {
+  cout << "In double_right_rotation(). "
+    << " node: " << root 
+    << " node->key: " << root->key 
+    << " node->bal: " << root->balance
+    << endl;
+
   // Left rotation on the left subtree.
   Node* newLeftRoot = left_rotation(root->left);
 
@@ -51,6 +63,12 @@ AvlTree::Node* AvlTree::double_right_rotation(Node* root) {
 }
 
 AvlTree::Node* AvlTree::double_left_rotation(Node* root) {
+  cout << "In double_left_rotation(). "
+    << " node: " << root 
+    << " node->key: " << root->key 
+    << " node->bal: " << root->balance
+    << endl;
+
   // Right rotation on the right subtree.
   Node* newRightRoot = right_rotation(root->right);
 
@@ -110,14 +128,19 @@ void AvlTree::insert(int key, Node* node, bool* h) {
 }
 
 void AvlTree::left_rebalance(Node* node, bool* h) {
+  cout << "In left_rebalance(). "
+    << " node: " << root 
+    << " node->key: " << root->key 
+    << " node->bal: " << root->balance
+    << "h: " << *h
+    << endl;
+
   if ((node->left)->balance == -1) {
     node->balance = 0;
-    cout << "Op right_rotation left_rebalance key: " << node->key << endl;
     right_rotation(node);
   }
   else {
     // Change the tree structure by a DRR.
-    cout << "Op double_right_rotation left_rebalance key: " << node->key << endl;
     node = double_right_rotation(node);
 
     // Adjust the balance.
@@ -135,23 +158,28 @@ void AvlTree::left_rebalance(Node* node, bool* h) {
 }
 
 void AvlTree::right_rebalance(Node* node, bool* h) {
-  if ((node->right)->balance == -1) {
+  cout << "In right_rebalance(). "
+    << " node: " << root 
+    << " node->key: " << root->key 
+    << " node->bal: " << root->balance
+    << "h: " << *h
+    << endl;
+
+  if ((node->right)->balance == 1) {
     node->balance = 0;
-    cout << "Op left_rotation right_rebalance key: " << node->key << endl;
     left_rotation(node);
   }
   else {
     // Change the tree structure by a DRR.
-    cout << "Op double_left_rotation right_rebalance key: " << node->key << endl;
     node = double_left_rotation(node);
 
     // Adjust the balance.
-    if (node->balance == -1)
-      (node->right)->balance = 1;
+    if (node->balance == 1)
+      (node->left)->balance = -1;
     else
       (node->left)->balance = 0;
-    if (node->balance == 1)
-      (node->right)->balance = -1;
+    if (node->balance == -1)
+      (node->right)->balance = 1;
     else
       (node->right)->balance = 0;
   }
@@ -176,36 +204,6 @@ int AvlTree::visit(Node* node) {
     return node->key;
   else
     return -1; // TODO: ajustar mensagem de erro!
-}
-
-// TODO: transformar isso em uma função que lê uma string de commando para
-// criação da árvore.
-std::string AvlTree::from_command(Node* node, std::string command) {
-  if (!command.empty()) {
-    if (is_operator(command.front())) {
-
-      node->left = new Node(0);
-      node->right = new Node(0);
-
-      node->key = command.front();
-
-      command.erase(command.begin());
-
-      command = from_command(node->left, command);
-      command = from_command(node->right, command);
-
-      return command;
-    }
-
-    else {
-      node->key = command.front();
-
-      command.erase(command.begin());
-
-      return command;
-    }
-  }
-  return "";
 }
 
 void AvlTree::print(Node* node, std::string prefix, bool isLeft) {

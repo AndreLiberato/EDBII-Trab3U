@@ -65,11 +65,6 @@ namespace avlt {
        */
       int visit(Node* node);
 
-      /*
-       * @brief 
-       * @param 
-       */
-      std::string from_command(Node* node, std::string command);
 
       /*
        * @brief Prints the binary tree in a nice way.
