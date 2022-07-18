@@ -15,7 +15,7 @@ class Command {
   private:
     std::unordered_map<std::string, commands> matchCommand = {
       {"i", commands::insert},
-      {"remove", commands::remove},
+      {"r", commands::remove},
       {"list", commands::list},
       {"select", commands::select},
       {"s", commands::search},

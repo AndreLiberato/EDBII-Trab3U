@@ -53,6 +53,9 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
     case command_sys.remove:
       //
       std::cout << "remove" << std::endl;
+      h = true;
+      avlTree->remove(stoi(value), avlTree->getRoot(), &h);
+      avlTree->print(avlTree->getRoot());
       break;
     case command_sys.list:
       //

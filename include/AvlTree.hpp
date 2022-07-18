@@ -46,6 +46,8 @@ namespace avlt {
       
       void left_rebalance(Node* node, bool* h);
 
+      void remove(int key, Node* node, bool* h);
+
       /*
        * @brief Recursively removes the node from memory with all its sub-nodes.
        * @param A pointer to a node.
