@@ -127,20 +127,24 @@ void AvlTree::insert(int key, Node* node, bool* h) {
   }
 }
 
-void AvlTree::remove(int key, Node* node, bool* h) {
+bool AvlTree::remove(int key, Node* node, bool* h) {
   cout << "In remove(). "
-    << " node: " << root 
-    << " node->key: " << root->key 
-    << " node->bal: " << root->balance
+    << " node: " << node 
+    << " node->key: " << node->key 
+    << " node->bal: " << node->balance
     << "h: " << *h
     << endl;
+  bool r = false;
 
   if (key != node->key) {
     if (key < node->key) {
       if (node->left != nullptr) {
         cout << "key < node->key" << endl;
-        remove(key, node->left, h);
-        node->left = nullptr;
+        r = remove(key, node->left, h);
+
+        if(r) {
+          node->left = nullptr;
+        }
         *h = true;
       }
       if (*h) {
@@ -161,9 +165,11 @@ void AvlTree::remove(int key, Node* node, bool* h) {
     else {
       if (node->right != nullptr) {
         cout << "key > node->key" << endl;
-        cout << node->right << endl;
-        remove(key, node->right, h);
-        node->right = nullptr;
+        r = remove(key, node->right, h);
+        if(r) {
+          node->right = nullptr;
+        }
+
         *h = true;
       }
       if (*h) {
@@ -183,8 +189,11 @@ void AvlTree::remove(int key, Node* node, bool* h) {
     }
   }
   else {
+    cout << "Key: " << node->key << " " << node << endl;
     remove_node(node);
+    return true;
   }
+  return false;
 }
 
 
