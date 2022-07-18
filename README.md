@@ -22,12 +22,12 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
   ./build/avltree
   ```
 ## Parâmetros da CLI:
-  i: insert
-  exemplo: i 2. Insere um nó com chave 2.
-  r: remove
-  exemplo: r 2. Remove a subárvore com chave 2.
-  s: search
-  exemplo: r 2. Busca a subárvore com chave 2.
+- i: insert -> 
+  exemplo: ``i 2``. Insere um nó com chave 2.
+- r: remove -> 
+  exemplo: ``r 2``. Remove a subárvore com chave 2.
+- s: search ->
+  exemplo: ``s 2``. Busca a subárvore com chave 2.
 
 ## Especificação
   O projeto é compilado usando as seguintes "flags" de compilação
