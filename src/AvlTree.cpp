@@ -140,6 +140,7 @@ void AvlTree::remove(int key, Node* node, bool* h) {
       if (node->left != nullptr) {
         cout << "key < node->key" << endl;
         remove(key, node->left, h);
+        node->left = nullptr;
         *h = true;
       }
       if (*h) {
@@ -162,6 +163,7 @@ void AvlTree::remove(int key, Node* node, bool* h) {
         cout << "key > node->key" << endl;
         cout << node->right << endl;
         remove(key, node->right, h);
+        node->right = nullptr;
         *h = true;
       }
       if (*h) {
@@ -181,11 +183,7 @@ void AvlTree::remove(int key, Node* node, bool* h) {
     }
   }
   else {
-    cout << "ELSE" << node << endl;
     remove_node(node);
-    cout << node << endl;
-    node = nullptr;
-    cout << node << endl;
   }
 }
 
@@ -251,13 +249,14 @@ void AvlTree::right_rebalance(Node* node, bool* h) {
 }
 
 void AvlTree::remove_node(Node* node) {
-  if (node->left != nullptr)
-    remove_node(node->left);
+  if (node != nullptr) {
+    if (node->left != nullptr)
+      remove_node(node->left);
 
-  if (node->right != nullptr)
-    remove_node(node->right);
-
-  delete node;
+    if (node->right != nullptr)
+      remove_node(node->right);
+    delete node;
+  }
 }
 
 AvlTree::Node* AvlTree::getRoot() { return root; }
