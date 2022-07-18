@@ -127,6 +127,14 @@ void AvlTree::insert(int key, Node* node, bool* h) {
   }
 }
 
+void AvlTree::remove(int key, Node* root, bool* h) {
+  Node* node = search(key, root);
+  if (node != nullptr) {
+    node = node->left;
+  }
+}
+
+
 void AvlTree::left_rebalance(Node* node, bool* h) {
   cout << "In left_rebalance(). "
     << " node: " << root 
