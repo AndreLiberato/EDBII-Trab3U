@@ -36,17 +36,20 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
       }
       break;
     case command_sys.remove:
-      //
-      std::cout << "remove" << std::endl;
-      h = true;
-      avlTree->remove(stoi(value), avlTree->getRoot(), &h);
-      avlTree->print(avlTree->getRoot());
+      if (avlTree->search(stoi(value), avlTree->getRoot(), false) == nullptr) {
+        cout << "The selected key already not exists in the tree. Please enter another value." << endl;
+      } else {
+        std::cout << "remove" << std::endl;
+        h = true;
+        avlTree->remove(stoi(value), avlTree->getRoot(), &h);
+        avlTree->print(avlTree->getRoot());
+      }
       break;
     case command_sys.search:
-        std::cout << "Searching..." << std::endl;
-        if (avlTree->search(stoi(value), avlTree->getRoot(), true) == nullptr){
-          cout << "Key not found" << endl;
-        }
+      std::cout << "Searching..." << std::endl;
+      if (avlTree->search(stoi(value), avlTree->getRoot(), true) == nullptr){
+        cout << "Key not found" << endl;
+      }
       break;
     case command_sys.exit:
       std::cout << "Exiting.." << std::endl;

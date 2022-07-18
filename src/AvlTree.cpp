@@ -7,11 +7,6 @@ using std::endl;
 AvlTree::~AvlTree() { remove_node(root); }
 
 AvlTree::Node* AvlTree::right_rotation(Node* root) {
-  cout << "In right_rotation(). "
-    << " node: " << root 
-    << " node->key: " << root->key 
-    << " node->bal: " << root->balance
-    << endl;
 
   if (root != nullptr and root->left != nullptr) {
     Node* tempNode = new Node(0);
@@ -26,11 +21,6 @@ AvlTree::Node* AvlTree::right_rotation(Node* root) {
 }
 
 AvlTree::Node* AvlTree::left_rotation(Node* root) {
-  cout << "In left_rotation(). "
-    << " node: " << root 
-    << " node->key: " << root->key 
-    << " node->bal: " << root->balance
-    << endl;
 
   if (root != nullptr and root->right != nullptr) {
     Node* tempNode = new Node(0);
@@ -45,11 +35,6 @@ AvlTree::Node* AvlTree::left_rotation(Node* root) {
 }
 
 AvlTree::Node* AvlTree::double_right_rotation(Node* root) {
-  cout << "In double_right_rotation(). "
-    << " node: " << root 
-    << " node->key: " << root->key 
-    << " node->bal: " << root->balance
-    << endl;
 
   // Left rotation on the left subtree.
   Node* newLeftRoot = left_rotation(root->left);
@@ -63,11 +48,6 @@ AvlTree::Node* AvlTree::double_right_rotation(Node* root) {
 }
 
 AvlTree::Node* AvlTree::double_left_rotation(Node* root) {
-  cout << "In double_left_rotation(). "
-    << " node: " << root 
-    << " node->key: " << root->key 
-    << " node->bal: " << root->balance
-    << endl;
 
   // Right rotation on the right subtree.
   Node* newRightRoot = right_rotation(root->right);
@@ -128,18 +108,11 @@ void AvlTree::insert(int key, Node* node, bool* h) {
 }
 
 bool AvlTree::remove(int key, Node* node, bool* h) {
-  cout << "In remove(). "
-    << " node: " << node 
-    << " node->key: " << node->key 
-    << " node->bal: " << node->balance
-    << "h: " << *h
-    << endl;
   bool r = false;
 
   if (key != node->key) {
     if (key < node->key) {
       if (node->left != nullptr) {
-        cout << "key < node->key" << endl;
         r = remove(key, node->left, h);
 
         if(r) {
@@ -164,7 +137,6 @@ bool AvlTree::remove(int key, Node* node, bool* h) {
     }
     else {
       if (node->right != nullptr) {
-        cout << "key > node->key" << endl;
         r = remove(key, node->right, h);
         if(r) {
           node->right = nullptr;
@@ -189,7 +161,6 @@ bool AvlTree::remove(int key, Node* node, bool* h) {
     }
   }
   else {
-    cout << "Key: " << node->key << " " << node << endl;
     remove_node(node);
     return true;
   }
@@ -198,12 +169,6 @@ bool AvlTree::remove(int key, Node* node, bool* h) {
 
 
 void AvlTree::left_rebalance(Node* node, bool* h) {
-  cout << "In left_rebalance(). "
-    << " node: " << root 
-    << " node->key: " << root->key 
-    << " node->bal: " << root->balance
-    << "h: " << *h
-    << endl;
 
   if ((node->left)->balance == -1) {
     node->balance = 0;
@@ -228,12 +193,6 @@ void AvlTree::left_rebalance(Node* node, bool* h) {
 }
 
 void AvlTree::right_rebalance(Node* node, bool* h) {
-  cout << "In right_rebalance(). "
-    << " node: " << root 
-    << " node->key: " << root->key 
-    << " node->bal: " << root->balance
-    << "h: " << *h
-    << endl;
 
   if ((node->right)->balance == 1) {
     node->balance = 0;

@@ -21,29 +21,13 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
   ```
   ./build/avltree
   ```
-
- O programa irá te guiar por um prompt. Exemplo:
-
-  ```
-  O que desejas fazer? [I: insert, R: remove, B: search]
-  i
-  4
-  "Printa a árvore com um nó com a chave 4."
-  s
-  4
-  Verdadeiro. Existe nó com essa chave.
-  "Printa árvore com nó destacado."
-  r
-  4
-  "Printa árvore vazia."
-  s
-  4
-  Falso. Não existe nó com essa chave.
-  "Printa árvore"
-  r
-  5
-  O nó 5 não existe! Não é possível remover.
-  ```
+## Parâmetros da CLI:
+  i: insert
+  exemplo: i 2. Insere um nó com chave 2.
+  r: remove
+  exemplo: r 2. Remove a subárvore com chave 2.
+  s: search
+  exemplo: r 2. Busca a subárvore com chave 2.
 
 ## Especificação
   O projeto é compilado usando as seguintes "flags" de compilação
@@ -56,3 +40,4 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
   -Ofast
   -fsanitize=address,undefined
   -lm
+
