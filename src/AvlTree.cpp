@@ -123,7 +123,7 @@ void AvlTree::insert(int key, Node* node, bool* h) {
             break;
         }
       }
-    }
+    } 
   }
 }
 
@@ -225,15 +225,18 @@ void AvlTree::print(Node* node, std::string prefix, bool isLeft) {
   }
 }
 
-AvlTree::Node* AvlTree::search(int key, AvlTree::Node* root) {
+AvlTree::Node* AvlTree::search(int key, AvlTree::Node* root, bool forPrint) {
   if (root->key == key) {
-    print(root);
+    if (forPrint){ 
+      print(root);
+      cout << "Key found in the subtree above" << endl;
+    }    
     return root;
   } else {
     if (root->left != nullptr and key < root->key) {
-      return search(key, root->left);
+      return search(key, root->left, forPrint);
     } else if (root->right != nullptr and key > root->key) {
-      return search(key, root->right);
+      return search(key, root->right, forPrint);
     }
   }
   return nullptr;

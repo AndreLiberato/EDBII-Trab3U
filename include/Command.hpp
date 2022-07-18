@@ -6,8 +6,6 @@ class Command {
     enum commands {
       insert,
       remove,
-      list,
-      select,
       search,
       exit
     };
@@ -15,11 +13,9 @@ class Command {
   private:
     std::unordered_map<std::string, commands> matchCommand = {
       {"i", commands::insert},
-      {"remove", commands::remove},
-      {"list", commands::list},
-      {"select", commands::select},
+      {"r", commands::remove},
       {"s", commands::search},
-      {"exit", commands::exit}
+      {"e", commands::exit}
     };
   
   public:

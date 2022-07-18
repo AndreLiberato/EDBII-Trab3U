@@ -75,7 +75,7 @@ namespace avlt {
        */
       void print(Node* node, std::string prefix = "", bool isLeft = false);
 
-      Node* search(int key, Node* root);
+      Node* search(int key, Node* root, bool forPrint);
   };
 } // namespace avlt
 
