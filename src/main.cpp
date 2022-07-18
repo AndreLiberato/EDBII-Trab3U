@@ -62,9 +62,18 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
       //
       std::cout << "select" << std::endl;
       break;
+    case command_sys.search:
+        std::cout << "search" << std::endl;
+        if (avlTree->search(stoi(value), avlTree->getRoot()) != nullptr){
+          cout << "Key found in the subtree above" << endl;
+        } else {
+          cout << "Key not found" << endl;
+        }
+      break;
     case command_sys.exit:
       //
       std::cout << "exit" << std::endl;
+      delete avlTree;
       return EXIT_SUCCESS;
       break;
 
@@ -77,8 +86,6 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char *argv[]) {
     command.clear();
     value.clear();
   }
-
-  delete avlTree;
 
   return 0;
 }

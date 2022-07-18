@@ -74,6 +74,8 @@ namespace avlt {
        * @param isLeft a bool to just to see if the node is a left one.
        */
       void print(Node* node, std::string prefix = "", bool isLeft = false);
+
+      Node* search(int key, Node* root);
   };
 } // namespace avlt
 

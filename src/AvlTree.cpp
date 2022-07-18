@@ -232,3 +232,17 @@ void AvlTree::print(Node* node, std::string prefix, bool isLeft) {
     print(node->right, prefix + (isLeft ? "|   " : "    "), false);
   }
 }
+
+AvlTree::Node* AvlTree::search(int key, AvlTree::Node* root) {
+  if (root->key == key) {
+    print(root);
+    return root;
+  } else {
+    if (root->left != nullptr and key < root->key) {
+      return search(key, root->left);
+    } else if (root->right != nullptr and key > root->key) {
+      return search(key, root->right);
+    }
+  }
+  return nullptr;
+}

@@ -8,6 +8,7 @@ class Command {
       remove,
       list,
       select,
+      search,
       exit
     };
 
@@ -17,6 +18,7 @@ class Command {
       {"remove", commands::remove},
       {"list", commands::list},
       {"select", commands::select},
+      {"s", commands::search},
       {"exit", commands::exit}
     };
   
