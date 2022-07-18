@@ -25,33 +25,25 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
  O programa irá te guiar por um prompt. Exemplo:
 
   ```
-  O que desejas fazer? [I: inserir, R: remover, B: buscar]
-  I
+  O que desejas fazer? [I: insert, R: remove, B: search]
+  i
   4
   "Printa a árvore com um nó com a chave 4."
-  B
+  s
   4
   Verdadeiro. Existe nó com essa chave.
   "Printa árvore com nó destacado."
-  R
+  r
   4
   "Printa árvore vazia."
-  B
+  s
   4
   Falso. Não existe nó com essa chave.
   "Printa árvore"
-  R
+  r
   5
   O nó 5 não existe! Não é possível remover.
   ```
-
-  Ou execute informando o arquivo.
-
-  ```
-  ./build/avltree data/in/data.in
-  ```
-  
-  Por exemplo.
 
 ## Especificação
   O projeto é compilado usando as seguintes "flags" de compilação
@@ -64,13 +56,3 @@ Repositório contendo as especificações do Trabalho da 3ª unidade da discipli
   -Ofast
   -fsanitize=address,undefined
   -lm
-
-## Observações
- As expressões contidas em data.in tem os seus números e suas operações separadas por um espaço, possibilitando, assim, a escrita de números com mais de um dígito.
-
- Exemplo de arquivo data.in
-
- ```
-  I4 B4 R4 B4 R5 I7 I7
-  B3 I456 B123 R314 B71 R5 I7
- ```
